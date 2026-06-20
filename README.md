@@ -1,159 +1,308 @@
-# Turborepo starter
+# 🎉 Invitation Frontend (Monorepo)
 
-This Turborepo starter is maintained by the Turborepo core team.
+Frontend monorepo untuk SaaS undangan digital dibangun menggunakan:
 
-## Using this example
+* Next.js (Apps)
+* TurboRepo
+* npm Workspaces
+* TypeScript
+* TailwindCSS
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+# 🧱 Struktur Project
+
+```txt
+invitation-frontend/
+│
+├── apps/
+│   ├── landing/                # Marketing website (undanganlu.com)
+│   ├── admin/                  # Admin panel (admin.undanganlu.com)
+│   ├── dashboard/              # User dashboard (app.undanganlu.com)
+│   ├── templates/              # Invitation templates (public facing)
+│
+├── packages/
+│   ├── ui/                     # Shared UI components
+│   ├── api-client/            # API wrapper layer
+│   ├── types/                 # Shared TypeScript types
+│   ├── hooks/                 # Shared React hooks
+│   ├── utils/                 # Utility functions
+│   ├── constants/             # Shared constants
+│   └── auth/                  # Auth utilities & guards
+│
+├── turbo.json
+├── package.json
+└── README.md
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+# 🚀 Apps Overview
 
-### Apps and Packages
+## 1. Landing Page
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+**Port:** `3002`
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Fungsi:
 
-### Utilities
+* Marketing website
+* SEO landing page
+* Pricing & features
+* Template showcase
+* Login & register
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 2. Admin Panel
 
-### Build
+**Port:** `3000`
 
-To build all apps and packages, run the following command:
+Role:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+* Super Admin
+* Admin
 
-```sh
-cd my-turborepo
-turbo build
+Fungsi:
+
+* User management
+* Template management
+* Payment & revenue
+* CMS landing page
+* System settings
+
+---
+
+## 3. User Dashboard
+
+**Port:** `3001`
+
+Role:
+
+* Customer
+
+Fungsi:
+
+* Manage invitations
+* Guest management
+* Gallery & story
+* RSVP system
+* Gift & payment tracking
+* Theme & domain settings
+
+---
+
+## 4. Templates (Public Apps)
+
+**Port:** `3003`
+
+Dipakai oleh tamu undangan.
+
+Contoh:
+
+* classic
+* modern
+* premium
+
+Fungsi:
+
+* Render invitation page
+* Public access via URL slug
+* RSVP & guest view
+
+---
+
+# 📦 Shared Packages
+
+## UI (`packages/ui`)
+
+Reusable UI components seperti:
+
+* Button
+* Input
+* Modal
+* Card
+* Table
+* DatePicker
+
+---
+
+## API Client (`packages/api-client`)
+
+Centralized API layer seperti:
+
+```ts
+AuthService.login()
+InvitationService.create()
+GuestService.getAll()
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-npm dlx turbo build
-npm exec turbo build
+## Types (`packages/types`)
+
+Shared TypeScript types:
+
+* User
+* Invitation
+* Guest
+* RSVP
+* Transaction
+
+---
+
+## Hooks (`packages/hooks`)
+
+Reusable hooks seperti:
+
+* useAuth
+* useInvitation
+* useDebounce
+* usePagination
+
+---
+
+## Utils (`packages/utils`)
+
+Helper functions seperti:
+
+* formatDate
+* formatCurrency
+* slugify
+* generateInvitationUrl
+
+---
+
+## Constants (`packages/constants`)
+
+Global constants seperti:
+
+* USER_ROLE
+* PAYMENT_STATUS
+* INVITATION_STATUS
+
+---
+
+## Auth (`packages/auth`)
+
+Authentication utilities seperti:
+
+* Route guards
+* Permission checks
+* Token handling
+* Session management
+
+---
+
+# 🧠 Architecture Principle
+
+Project ini menggunakan **module-based architecture per app**, bukan global folder.
+
+Contoh di dashboard:
+
+```txt
+modules/
+├── invitations/
+├── guests/
+├── gallery/
+├── rsvp/
+└── settings/
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Tujuannya:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+* scalable
+* mudah maintenance
+* tidak berantakan saat project besar
 
-```sh
-turbo build --filter=docs
+---
+
+# ⚙️ Running Project
+
+Install dependencies:
+
+```bash
+npm install
 ```
 
-Without global `turbo`:
+Run semua apps:
 
-```sh
-npx turbo build --filter=docs
-npm exec turbo build --filter=docs
-npm exec turbo build --filter=docs
+```bash
+npm run dev
 ```
 
-### Develop
+Build semua apps:
 
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
+```bash
+npm run build
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo dev
-npm exec turbo dev
-npm exec turbo dev
+## 🌐 Port Mapping
+
+Saat menjalankan monorepo, masing-masing app akan berjalan di port berikut:
+
+```txt
+admin        → localhost:3000
+dashboard    → localhost:3001
+landing      → localhost:3002
+templates    → localhost:3003
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## ▶️ Run per app (optional)
 
-```sh
-turbo dev --filter=web
+Kalau mau jalanin satu app saja:
+
+### Admin
+
+```bash
+npm run dev --workspace=@invitation/admin
 ```
 
-Without global `turbo`:
+### Dashboard
 
-```sh
-npx turbo dev --filter=web
-npm exec turbo dev --filter=web
-npm exec turbo dev --filter=web
+```bash
+npm run dev --workspace=@invitation/dashboard
 ```
 
-### Remote Caching
+### Landing
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
+```bash
+npm run dev --workspace=@invitation/landing
 ```
 
-Without global `turbo`, use your package manager:
+### Templates
 
-```sh
-cd my-turborepo
-npx turbo login
-npm exec turbo login
-npm exec turbo login
+```bash
+npm run dev --workspace=@invitation/templates
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+---
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+# 🧩 Philosophy
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+* Shared logic masuk `packages/`
+* Business logic masuk `apps/`
+* UI reusable di `packages/ui`
+* Semua app saling independent tapi terhubung via workspace
 
-```sh
-turbo link
-```
+---
 
-Without global `turbo`:
+# 📌 Notes
 
-```sh
-npx turbo link
-npm exec turbo link
-npm exec turbo link
-```
+* Gunakan npm workspace (jangan install per-app)
+* Gunakan Turbo untuk build orchestration
+* Semua shared module wajib di `packages/`
 
-## Useful Links
+---
 
-Learn more about the power of Turborepo:
+# 🚀 Goal
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+Membangun SaaS undangan digital yang scalable:
+
+* Multiple template system
+* Multi-tenant architecture
+* High customization
+* SEO-friendly public invitations

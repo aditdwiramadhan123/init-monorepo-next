@@ -1,0 +1,9 @@
+{
+  "extends": "@invitation/typescript-config/react-library.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
