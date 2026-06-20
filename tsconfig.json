@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/admin" },
+    { "path": "./apps/dashboard" },
+    { "path": "./apps/landing" },
+    { "path": "./apps/templates" },
+
+    { "path": "./packages/ui" },
+    { "path": "./packages/utils" },
+    { "path": "./packages/types" },
+    { "path": "./packages/hooks" },
+    { "path": "./packages/auth" },
+    { "path": "./packages/api-client" }
+  ]
+}
