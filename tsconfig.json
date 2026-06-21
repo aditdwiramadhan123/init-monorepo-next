@@ -12,5 +12,32 @@
     { "path": "./packages/hooks" },
     { "path": "./packages/auth" },
     { "path": "./packages/api-client" }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@invitation/admin/*": ["apps/admin/*"],
+      "@invitation/dashboard/*": ["apps/dashboard/*"],
+      "@invitation/landing/*": ["apps/landing/*"],
+      "@invitation/templates/*": ["apps/templates/*"],
+
+      "@invitation/ui": ["packages/ui/src"],
+      "@invitation/ui/*": ["packages/ui/src/*"],
+
+      "@invitation/utils": ["packages/utils/src"],
+      "@invitation/utils/*": ["packages/utils/src/*"],
+
+      "@invitation/types": ["packages/types/src"],
+      "@invitation/types/*": ["packages/types/src/*"],
+
+      "@invitation/hooks": ["packages/hooks/src"],
+      "@invitation/hooks/*": ["packages/hooks/src/*"],
+
+      "@invitation/auth": ["packages/auth/src"],
+      "@invitation/auth/*": ["packages/auth/src/*"],
+
+      "@invitation/api-client": ["packages/api-client/src"],
+      "@invitation/api-client/*": ["packages/api-client/src/*"]
+    }
+  }
 }
